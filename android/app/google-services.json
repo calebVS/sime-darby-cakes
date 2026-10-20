@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "469237901543",
+    "project_id": "kkcare",
+    "storage_bucket": "kkcare.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469237901543:android:dc85b37cc3f6da6e505a42",
+        "android_client_info": {
+          "package_name": "com.example.kkcare"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCALD5CTtirGD5JtjTFGynRV7kCbtX36Nw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
