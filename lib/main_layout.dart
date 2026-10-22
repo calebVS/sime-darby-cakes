@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'feed_and_events_screen.dart';
 import 'capture_report_sheet.dart';
+import 'nearby_discovery_screen.dart';
+import 'rewards_screen.dart';
+import 'profile_screen.dart';
 
 class MainLayout extends StatefulWidget {
   const MainLayout({Key? key}) : super(key: key);
@@ -14,10 +17,10 @@ class _MainLayoutState extends State<MainLayout> {
 
   final List<Widget> _screens = [
     const FeedAndEventsScreen(),
-    const Center(child: Text('Nearby Map Screen')),
+    const NearbyDiscoveryScreen(),
     const SizedBox(), // Placeholder for Report modal trigger
-    const Center(child: Text('Rewards Screen')),
-    const Center(child: Text('Profile Screen')),
+    const RewardsScreen(),
+    const ProfileScreen(),
   ];
 
   void _onTabTapped(int index) {
