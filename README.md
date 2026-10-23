@@ -1,6 +1,6 @@
-# 🏙️ Blockup — Community Issue Reporting App
+# 🏙️ CityTalk — Community Issue Reporting App
 
-**Blockup** is a modern, community-driven mobile application built with **Flutter** that allows citizens to capture, analyze, and report local infrastructure issues—such as potholes, streetlighting failures, and uncollected waste. 
+**CityTalk** is a modern, community-driven mobile application built with **Flutter** that allows citizens to capture, analyze, and report local infrastructure issues—such as potholes, streetlighting failures, and uncollected waste. 
 
 By integrating **Gemini AI / Computer Vision** for instant issue detection and **Firebase Firestore** for real-time synchronization, Blockup provides a seamless, TikTok-style vertical feed experience where neighbors can view, upvote, comment on, and track local civic reports in real-time.
 
