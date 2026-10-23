@@ -105,8 +105,9 @@ class _FeedAndEventsScreenState extends State<FeedAndEventsScreen> {
   // --- 1. LIVE SCROLLABLE FEED VIEW ---
   Widget _buildFeedView() {
     return StreamBuilder<QuerySnapshot>(
+      // FIXED: Listen to 'reports' (where CaptureReportSheet posts) instead of 'posts'
       stream: FirebaseFirestore.instance
-          .collection('posts')
+          .collection('reports')
           .orderBy('createdAt', descending: true)
           .snapshots(),
       builder: (context, snapshot) {
@@ -133,25 +134,30 @@ class _FeedAndEventsScreenState extends State<FeedAndEventsScreen> {
           );
         }
 
-        final posts = snapshot.data!.docs;
+        final reports = snapshot.data!.docs;
 
         return PageView.builder(
           scrollDirection: Axis.vertical,
-          itemCount: posts.length,
+          itemCount: reports.length,
           itemBuilder: (context, index) {
-            final doc = posts[index];
+            final doc = reports[index];
             final data = doc.data() as Map<String, dynamic>;
+
+            // FIXED: Map fields to match CaptureReportSheet data structure
+            final imageUrl = (data['imageUrl'] != null && data['imageUrl'].toString().isNotEmpty)
+                ? data['imageUrl']
+                : 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&q=80&w=800';
 
             return _buildSingleFeedItem(
               postId: doc.id,
               authorName: data['authorName'] ?? 'Community User',
               timeAgo: 'Recently',
-              title: data['description'] ?? 'Neighborhood Report',
+              title: data['title'] ?? 'Neighborhood Report',
               description: data['location'] ?? '48th St & Telegraph Ave',
               category: data['category'] ?? 'Roads',
-              imageUrl: data['mediaUrl'] ?? 'https://images.unsplash.com/photo-1515162816999-a0c47dc192f7?auto=format&fit=crop&q=80&w=800',
-              commentsCount: '${data['reportsCount'] ?? 0}',
-              initialLikes: data['likesCount'] ?? 128,
+              imageUrl: imageUrl,
+              commentsCount: '${data['commentsCount'] ?? 0}',
+              initialLikes: data['upvotes'] ?? 0,
             );
           },
         );

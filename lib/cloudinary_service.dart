@@ -4,7 +4,8 @@ import 'package:http/http.dart' as http;
 
 class CloudinaryService {
   static const String cloudName = 'dgyqbv0f5';
-  static const String uploadPreset = 'citytalk_preset'; // Replace with your exact Unsigned Preset
+  // MUST BE AN UNSIGNED PRESET IN CLOUDINARY CONSOLE
+  static const String uploadPreset = 'sime-darby'; 
 
   static Future<String?> uploadImage(File imageFile) async {
     try {
@@ -18,13 +19,15 @@ class CloudinaryService {
 
       if (response.statusCode == 200) {
         final jsonMap = jsonDecode(responseData);
-        return jsonMap['secure_url'] as String;
+        final uploadedUrl = jsonMap['secure_url'] as String;
+        print('✅ Cloudinary Upload Success: $uploadedUrl');
+        return uploadedUrl;
       } else {
-        print('Cloudinary upload error (${response.statusCode}): $responseData');
+        print('❌ Cloudinary Upload Failed (${response.statusCode}): $responseData');
         return null;
       }
     } catch (e) {
-      print('Exception during Cloudinary upload: $e');
+      print('❌ Cloudinary Exception: $e');
       return null;
     }
   }
